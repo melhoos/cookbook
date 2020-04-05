@@ -4,7 +4,7 @@ var TYPES = require('tedious').TYPES;
 function IngredientRepository(dbContext) {
 
     function getIngredients(req, res) {
-        var query = "select * from [dbo].[COOKBOOK_INGREDIENT] order by [INGREDIENT_NAME] asc"
+        var query = "select * from [dbo].[COOKBOOK_INGREDIENT] order by [INGREDIENT_NAME_SINGLE] asc"
         dbContext.queryExecute(query, [], false, function (error, data) {
             return res.json(response(data, error));
         });
@@ -14,7 +14,7 @@ function IngredientRepository(dbContext) {
         if (req.params.id) { 
             var parameters = [];
             parameters.push({ name: 'Id', type: TYPES.VarChar, val: req.params.id });
-            var query = "select * from [dbo].[COOKBOOK_INGREDIENT] where [INGREDIENT_CATEGORY_ID] = @Id order by [INGREDIENT_NAME] asc"
+            var query = "select * from [dbo].[COOKBOOK_INGREDIENT] where [INGREDIENT_CATEGORY_ID] = @Id order by [INGREDIENT_NAME_SINGLE] asc"
             dbContext.queryExecute(query, parameters, false, function (error, data) {
                 return res.json(response(data, error));
             });
@@ -34,9 +34,10 @@ function IngredientRepository(dbContext) {
 
     function postIngredient(req, res) {
         var parameters = [];
-        parameters.push({ name: 'IngredientName', type: TYPES.VarChar, val: req.body.IngredientName.toUpperCase() });
+        parameters.push({ name: 'IngredientNameSingle', type: TYPES.VarChar, val: req.body.IngredientNameSingle.toUpperCase() });
+        parameters.push({ name: 'IngredientNamePlural', type: TYPES.VarChar, val: req.body.IngredientNamePlural.toUpperCase() });
         parameters.push({ name: 'IngredientCategoryId', type: TYPES.Int, val: req.body.IngredientCategoryId });
-        var query = "insert into [dbo].[COOKBOOK_INGREDIENT] ([INGREDIENT_NAME], [INGREDIENT_CATEGORY_ID]) values (@IngredientName, @IngredientCategoryId)"
+        var query = "insert into [dbo].[COOKBOOK_INGREDIENT] ([INGREDIENT_NAME_SINGLE], [INGREDIENT_NAME_PLURAL], [INGREDIENT_CATEGORY_ID]) values (@IngredientNameSingle, @IngredientNamePlural, @IngredientCategoryId)"
         dbContext.post(query, parameters, function (error, data) {
             return res.json(response(data, error));
         })
