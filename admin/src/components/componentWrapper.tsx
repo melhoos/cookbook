@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {PageContext, Pages} from '../providers/pageProvider';
+import IngredientsWrapper from './ingredients/ingredientsWrapper';
 import '../styles/content.scss';
 
 const renderContent = (pageName: Pages) => {
@@ -7,7 +8,7 @@ const renderContent = (pageName: Pages) => {
         case Pages.HOME:
             return (<></>)
         case Pages.INGREDIENT:
-            return (<></>)
+            return (<IngredientsWrapper/>)
         default:
             return (<></>)
     }

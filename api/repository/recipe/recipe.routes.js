@@ -10,6 +10,6 @@ module.exports = function (router) {
     router.route('/recipe')
         .post(recipeRepository.post);
     router.route('/recipe/:id')
-        .put(recipeRepository.put);
+        .put(recipeRepository.put)
         .delete(recipeRepository.delete);
 }
