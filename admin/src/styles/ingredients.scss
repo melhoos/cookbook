@@ -6,6 +6,7 @@
         box-shadow: 0px 0px 3px lightgrey;
         padding: 2rem;
         text-align: center;
+        min-width: 260px;
 
         .ingredient-category-title {
             margin-bottom: 0.5rem;
@@ -14,8 +15,18 @@
         .ingredient-category-item {
             display: inline-block;
             box-shadow: 0px 0px 3px lightgrey;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             margin: 0.5rem;
+
+            .remove-ingredient-category-item {
+                position: absolute;
+                border: none;
+                border-radius: 50%;
+                box-shadow: 0px 0px 3px lightgrey;
+                color: $brightRed;
+                transform: translate(0px, -15px);
+
+            }
         }
     }
 }

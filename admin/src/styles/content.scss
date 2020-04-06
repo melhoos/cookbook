@@ -6,4 +6,21 @@
     .error {
       color: $brightRed;
     }
+
+    .add-btn, .save-btn {
+      color: white;
+      padding: 0.5rem;
+      background-color: $lightBlue;
+      border: none;
+      min-width: 42px;
+      box-shadow: 0px 0px 3px lightgrey;
+      margin: 0.5rem;
+    }
+
+    .input-field {
+      padding: 0.5rem;
+      border: none;
+      box-shadow: 0px 0px 3px lightgrey;
+      margin: 0.5rem;
+    }
 }

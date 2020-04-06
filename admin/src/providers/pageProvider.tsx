@@ -5,7 +5,7 @@ enum Pages {
     INGREDIENT = 'Ingredienser'
 }
 
-const initPage = Pages.HOME
+const initPage = Pages.INGREDIENT
 
 const PageContext = React.createContext<[Pages, Function]>([initPage, () => {}])
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const PageProvider = (props: Props) => {
-    const [state, setState] = useState<Pages>(Pages.HOME);
+    const [state, setState] = useState<Pages>(initPage);
     return (
         <PageContext.Provider value={[state, setState]}>
             {props.children}

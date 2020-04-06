@@ -1,6 +1,6 @@
 import React from 'react';
 import Ingredients from './ingredients';
-import IngredientCategories from './ingredientCategories';
+import IngredientCategories from './ingredientCategory/ingredientCategories';
 import '../../styles/ingredients.scss';
 
 const IngredientsWrapper = () => {
