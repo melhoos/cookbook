@@ -39,3 +39,21 @@ export async function postIngredientCategorie(newIngredientCategory: string): Pr
             return errorResult
         })
 }
+
+export async function deleteIngredientCategorie(ingredientCategoryId: number): Promise<Service<IngredientCategory[]>>{
+    return await fetch(`${apiUrl}/ingredientCategory/${ingredientCategoryId}`, {
+        method: 'DELETE',
+    })
+    .then((response: Response) => {
+        if (response.ok) return response.json()
+        else throw new Error(`Error: ${response.statusText}`)
+    })
+    .then((response: IngredientCategory[]) => {
+        const result: Service<IngredientCategory[]> = {status: ConnectionStatus.SUCCESS, payload: response}
+        return result
+    })
+    .catch((error: Error) => {
+        const errorResult: Service<IngredientCategory[]> = {status: ConnectionStatus.ERROR, error}
+        return errorResult
+    })
+} 
