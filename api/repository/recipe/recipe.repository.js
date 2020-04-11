@@ -9,6 +9,18 @@ function RecipeRepository(dbContext) {
             return res.json(response(data, error));
         });
     }
+
+    function getRecipeById(req, res) {
+        if (req.params.id) { 
+            var parameters = [];
+            parameters.push({ name: 'Id', type: TYPES.VarChar, val: req.params.id });
+            var query = "select * from [dbo].[COOKBOOK_RECIPE] where [ID] = @Id"
+            dbContext.queryExecute(query, parameters, false, function (error, data) {
+                var singleData = data.length === 1 ? data[0] : data;
+                return res.json(response(singleData, error));
+            });
+        }
+    }
     
     function getRecipesByRecipeTypeId(req, res) {
         if (req.params.id) { 
@@ -79,6 +91,7 @@ function RecipeRepository(dbContext) {
 
     return {
             getAll: getRecipes,
+            getById: getRecipeById,
             getAllByRecipeTypeId: getRecipesByRecipeTypeId,
             post: postRecipe,
             put: putRecipe,
