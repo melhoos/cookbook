@@ -1,0 +1,60 @@
+@import './variables.scss';
+
+.response-icon {
+    text-align: center;
+}
+
+.bug-icon {
+    animation: spin 2s infinite;
+    color: $red;
+}
+
+.heart-broken-icon {
+    color: $red;
+}
+
+.spinner-icon {
+    animation: color-me-in 10s infinite, spin 2s infinite;
+}
+
+@keyframes spin { 
+    100% { 
+        transform: rotate(360deg);
+    } 
+}
+
+@keyframes color-me-in {
+    0% {
+        color: $red;
+    }
+    10% {
+        color: $orange;
+    }
+    20% {
+        color: $lightYellow;
+    }
+    30% {
+        color: $lightGreen;
+    }
+    40% {
+        color: $lightBlue;
+    }
+    50% {
+        color: $darkBlue;
+    }
+    60% {
+        color: $lightBlue;
+    }
+    70% {
+        color: $lightGreen;
+    }
+    80% {
+        color: $lightYellow;
+    }
+    90% {
+        color: $orange;
+    }
+    100% {
+        color: $red;
+    }
+}

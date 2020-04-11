@@ -1,0 +1,32 @@
+@import './variables.scss';
+
+.content {
+    margin: 10vh 10vw 0 10vw;
+    color: $black;
+
+    .back-btn {
+        .back-link {
+            margin-left: 5px;
+            text-decoration: none;
+            color: $black;
+            padding-bottom: 0.5em;
+        }
+    }
+    .back-btn:hover {
+        .back-icon{
+            animation: bounce 2s infinite;
+        }
+        .back-link {
+            border-bottom: solid 1px $darkBlue;
+        }
+    }
+}
+
+@keyframes bounce { 
+    0% { 
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+}
