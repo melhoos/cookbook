@@ -37,7 +37,7 @@ const IngredientCategories = () => {
 
     return ( 
         <div className="ingredient-category-wrapper">
-            <div className="ingredient-category-title">Ingrediens kategorier:</div>
+            <h4 className="ingredient-category-title">Ingrediens kategorier:</h4>
             { categories.status === ConnectionStatus.LOADING && onLoading()}
             { categories.status === ConnectionStatus.ERROR && onError()}
             { categories.status === ConnectionStatus.SUCCESS && onSuccess(categories.payload)}

@@ -3,7 +3,7 @@ import {PageContext, Pages} from '../../providers/pageProvider';
 import { Navbar, Nav } from 'react-bootstrap';
 import '../../styles/menu.scss';
 
-const Menu = () => {
+const CustomNavbar = () => {
     const [pageName, setPageName] = useContext(PageContext)
     const pages = Object.keys(Pages)
 
@@ -24,4 +24,4 @@ const Menu = () => {
     )
 }
 
-export default Menu
+export default CustomNavbar

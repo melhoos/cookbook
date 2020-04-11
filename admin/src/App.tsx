@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/app.scss';
-import Menu from './components/menu/menu';
+import CustomNavbar from './components/navbar/navbar';
 import ContentWrapper from './components/componentWrapper';
 import {PageProvider} from './providers/pageProvider';
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <PageProvider>
       <div className="App">
-        <Menu/>
+        <CustomNavbar/>
         <ContentWrapper/>
       </div>
     </PageProvider>

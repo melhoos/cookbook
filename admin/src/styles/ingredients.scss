@@ -10,6 +10,7 @@
 
         .ingredient-category-title {
             margin-bottom: 0.5rem;
+            color: $lightBlue
         }
         
         .ingredient-category-item {
@@ -25,7 +26,8 @@
                 box-shadow: 0px 0px 3px lightgrey;
                 color: $brightRed;
                 transform: translate(0px, -15px);
-
+            }:hover {
+                background-color: $lightRed;
             }
         }
     }
