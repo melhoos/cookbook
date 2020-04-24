@@ -32,6 +32,17 @@ function IngredientRepository(dbContext) {
         }
     }
 
+    function getIngredientsByRecipeId(req, res) {
+        if (req.params.id) {
+            var parameters = [];
+            parameters.push({ name: 'Id', type: TYPES.VarChar, val: req.params.id });
+            var query = "select * from [dbo].[COOKBOOK_RECIPE_INGREDIENT] inner join [dbo].[COOKBOOK_INGREDIENT] on [dbo].[COOKBOOK_RECIPE_INGREDIENT].[INGREDIENT_ID] = [dbo].[COOKBOOK_INGREDIENT].[ID] where [RECIPE_ID] = @Id"
+            dbContext.queryExecute(query, parameters, false, function (error, data) {
+                return res.json(response(data, error));
+            });
+        }
+    }
+
     function postIngredient(req, res) {
         var parameters = [];
         parameters.push({ name: 'IngredientNameSingle', type: TYPES.VarChar, val: req.body.IngredientNameSingle.toUpperCase() });
@@ -67,6 +78,7 @@ function IngredientRepository(dbContext) {
             getAll: getIngredients,
             getAllByCategoryId: getIngredientsByCategoryId,
             getById: getIngredientById,
+            getAllByRecipeId: getIngredientsByRecipeId,
             post: postIngredient,
             delete: deleteIngredient
         }

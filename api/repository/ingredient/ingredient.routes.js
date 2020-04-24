@@ -9,6 +9,8 @@ module.exports = function (router) {
         .get(ingredientRepository.getAllByCategoryId);
     router.route('/ingredientById/:id')
         .get(ingredientRepository.getById);
+    router.route('/ingredientsByRecipeId/:id')
+        .get(ingredientRepository.getAllByRecipeId)
     router.route('/ingredient')
         .post(ingredientRepository.post);
     router.route('/ingredient/:id')
