@@ -1,50 +1,59 @@
 @import './variables.scss';
 
-.recipes {
+.recipe {
 
-    .recipe-item-wrapper {
+    .ingredient-step-wrapper {
         display: flex;
-        justify-content: space-between;
-        box-shadow: 0 0 5px $lightBlue;
-        padding: 30px 40px 30px 30px;
-        text-decoration: none;
-        color: $black;
-        h3 {
-            margin: 0 0 0.5em 0;
-        }
-        .recipe-item-time {
-            align-items: center;
-            font-size: 1em;
-            margin: 3px 2vw 0 0;
-            span {
-                font-size: 1rem;
+        .ingredient-list, .step-list {
+            list-style-type: none;
+            .ingredient-item, .step-item {
+                margin: 1em 0;
+                display: flex;
+                .ingredient-measurement, .step-order {
+                    display: inline-block;
+                }
             }
         }
-        
-        .recipe-item-desc {
-            margin: 0;
-        }
-        .recipe-item-chevron {
-            display: flex;
-            align-items: center;
-            color: $darkBlue;
-        }
-    }
 
-    .recipe-item-wrapper:hover {
-        background-color: lighten($lightBlue, 25%);
-        box-shadow: 0 0 5px 1px $lightBlue;
-        .recipe-item-chevron {
-            animation: bounce 1.5s infinite;
-        }
+        .ingredient-list {
+            min-width: 25vw;
+            padding-left: 0;
+            .ingredient-item {
+                .ingredient-measurement {
+                    min-width: 5em;
+                }
+            }
+        }  
+
+        .step-list {
+            min-width: 50vw;
+            padding-left: 2em;
+            .step-item {
+                .step-order {
+                    min-width: 2em;
+                }
+            }
+        }  
     }
 }
 
-@keyframes bounce { 
-    0% { 
-        transform: translateX(0px);
-    }
-    50% {
-        transform: translateX(20px);
+@media(max-width: 700px) {
+    .recipe {
+        .ingredient-step-wrapper {
+            display: block;
+            .ingredient-list {
+                display: flex;
+                flex-wrap: wrap;
+                .ingredient-item {
+                    .ingredient-measurement {
+                        min-width: initial;
+                        margin-right: 0.5em;
+                    }
+                }
+            }
+            .step-list {
+                padding-left: 0px;
+            }
+        }
     }
 }

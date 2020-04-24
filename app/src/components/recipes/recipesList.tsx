@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import OnError from '../shared/onError';
 import Spinner from '../shared/spinner';
-import {getRecipes} from './recipeService';
+import {getRecipes} from './recipesService';
 import Recipe from '../../models/recipe.model';
 import OnNoneFound from '../shared/onNoneFound';
 import RecipeItem from './recipeItem';

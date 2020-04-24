@@ -1,6 +1,6 @@
 import React from 'react';
 // import HomeWrapper from './home/homeWrapper';
-import RecipesWrapper from './recipe/recipesWrapper';
+import RecipesWrapper from './recipes/recipesWrapper';
 import RecipePageWrapper from './recipe/recipePageWrapper';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import '../styles/content.scss';

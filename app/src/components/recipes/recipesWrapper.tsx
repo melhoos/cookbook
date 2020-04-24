@@ -1,6 +1,6 @@
 import React from 'react';
 import RecipesList from './recipesList';
-import '../../styles/recipe.scss';
+import '../../styles/recipes.scss';
 
 const RecipesWrapper = () => {
   return (

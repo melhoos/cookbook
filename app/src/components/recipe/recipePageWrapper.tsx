@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import Recipe from '../../models/recipe.model';
-import {RouteComponentProps} from "react-router-dom";
-import {getRecipeById} from './recipeService';
-import {Service, ConnectionStatus} from '../../utilities/dataService';
-import OnError from '../shared/onError';
-import {iconSize} from '../../utilities/iconSize';
-import Spinner from '../shared/spinner';
+import React, {useState, useEffect} from 'react';
 import BackBtn from '../shared/backBtn';
+import Spinner from '../shared/spinner';
+import OnError from '../shared/onError';
+import StepsWrapper from './stepsWrapper';
+import RecipeWrapper from './recipeWrapper';
+import {getFullRecipeById} from './recipeService';
+import {iconSize} from '../../utilities/iconSize';
+import {RouteComponentProps} from "react-router-dom";
+import IngredientsWrapper from './ingredientsWrapper';
+import FullRecipe from '../../models/fullRecipe.model';
+import {Service, ConnectionStatus} from '../../utilities/dataService';
+import '../../styles/recipe.scss';
 
 const onError = () => {
     return (<OnError iconSize={iconSize.lg}/>) 
@@ -16,11 +20,14 @@ const onLoading = () => {
     return ( <Spinner iconSize={iconSize.lg}/> )
 }
 
-const onSuccess = (recipe: Recipe) => {
-    // todo: support of not found 
+const onSuccess = (fullRecipe: FullRecipe) => {
     return (
         <>
-            <h1>{recipe.RECIPE_NAME}</h1>
+            <RecipeWrapper fullRecipe={fullRecipe}/>
+            <div className="ingredient-step-wrapper">
+                <IngredientsWrapper ingredients={fullRecipe.INGREDIENTS}/>
+                <StepsWrapper steps={fullRecipe.STEPS}/>
+            </div>
         </>
     )
 }
@@ -30,20 +37,20 @@ interface Props extends RouteComponentProps<{
 }> {}
 
 const RecipePageWrapper = (props: Props) => {
-    const [recipe, setRecipe] = useState<Service<Recipe>>({status: ConnectionStatus.LOADING})
-    const recipeId = props.match.params.id;
-    
+    const [fullRecipe, setFullRecipe] = useState<Service<FullRecipe>>({status: ConnectionStatus.LOADING})
+    const recipeId = parseInt(props.match.params.id);
+
     useEffect(() => {
-        getRecipeById(recipeId).then((resp)=> setRecipe(resp));
+        getFullRecipeById(recipeId).then((resp)=>setFullRecipe(resp))
     },[recipeId])
 
     return (
-        <>
+        <div className="recipe">
             <BackBtn url="/recipes" name="Oppskrifter"/>
-            { recipe.status === ConnectionStatus.LOADING && onLoading()}
-            { recipe.status === ConnectionStatus.ERROR && onError()}
-            { recipe.status === ConnectionStatus.SUCCESS && onSuccess(recipe.payload)}
-        </>
+            {fullRecipe.status === ConnectionStatus.LOADING && onLoading()}
+            {fullRecipe.status === ConnectionStatus.ERROR && onError()}
+            {fullRecipe.status === ConnectionStatus.SUCCESS && onSuccess(fullRecipe.payload)}
+        </div>
     );
 }
 
